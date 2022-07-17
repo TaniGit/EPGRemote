@@ -9,10 +9,11 @@ class ProgramController extends Controller {
     public execute(parsedUrl: url.Url, _request: http.ServerRequest, response: http.ServerResponse, _postData: string): void {
         this.log.access.info("controller 'ProgramController' was called.");
 
-        let type = parsedUrl.query.type;
-        let time = parsedUrl.query.time;
-        let length = parsedUrl.query["length"];
-        let ch = parsedUrl.query.ch;
+	var querystring = require('querystring');
+        let type = querystring.parse(parsedUrl.query).type;
+        let time = querystring.parse(parsedUrl.query).time;
+        let length = querystring.parse(parsedUrl.query)["length"];
+        let ch = querystring.parse(parsedUrl.query).ch;
 
         let model = this.modelFactory.get("ProgramModel");
         model.setOption({ type: type, time: time, length: Number(length), ch: ch });

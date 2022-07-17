@@ -9,8 +9,9 @@ class LiveConfigController extends Controller {
     public execute(parsedUrl: url.Url, _request: http.ServerRequest, response: http.ServerResponse, _postData: string): void {
         this.log.access.info("controller 'LiveConfigController' was called.");
 
-        let type = parsedUrl.query.type;
-        let method = parsedUrl.query.method;
+	var querystring = require('querystring');
+        let type = querystring.pars(parsedUrl.query).type;
+        let method = querystring.parse(parsedUrl.query).method;
 
         let model = this.modelFactory.get("LiveConfigModel");
         model.setOption({

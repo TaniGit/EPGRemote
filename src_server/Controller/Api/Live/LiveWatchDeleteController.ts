@@ -9,8 +9,9 @@ class LiveWatchDeleteController extends Controller {
     public execute(parsedUrl: url.Url, _request: http.ServerRequest, response: http.ServerResponse, _postData: string): void {
         this.log.access.info("controller 'LiveWatchDeleteController' was called.");
 
+	var querystring = require('querystring');
         let model = this.modelFactory.get("LiveWatchStopStreamModel");
-        model.setOption({ streamId: Number(parsedUrl.query.stream) });
+        model.setOption({ streamId: Number(querystring.parse(parsedUrl.query).stream) });
         let view = new NormalApiView(response, "LiveWatchStopStreamModel");
         view.setModels({ LiveWatchStopStreamModel: model });
 

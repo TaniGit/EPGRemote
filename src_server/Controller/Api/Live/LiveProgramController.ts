@@ -9,8 +9,9 @@ class LiveProgramController extends Controller {
     public execute(parsedUrl: url.Url, _request: http.ServerRequest, response: http.ServerResponse, _postData: string): void {
         this.log.access.info("controller 'LiveProgramController' was called.");
 
-        let type = parsedUrl.query.type;
-        let time = parsedUrl.query.time;
+	var querystring = require('querystring');
+        let type = querystring.parse(parsedUrl.query).type;
+        let time = querystring.parse(parsedUrl.query).time;
         if(typeof time == "undefined") { time = 0; }
 
         let model = this.modelFactory.get("LiveProgramModel");

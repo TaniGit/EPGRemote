@@ -9,12 +9,13 @@ class LiveWatchGetController extends Controller {
     public execute(parsedUrl: url.Url, _request: http.ServerRequest, response: http.ServerResponse, _postData: string): void {
         this.log.access.info("controller 'LiveWatchGetController' was called.");
 
+	var querystring = require('querystring');
         let model = this.modelFactory.get("LiveWatchStreamInfoModel");
-        let streamId = parsedUrl.query.stream;
-        let channel = parsedUrl.query.channel;
-        let sid = parsedUrl.query.sid;
-        let tuner = parsedUrl.query.tuner;
-        let video = parsedUrl.query.video;
+        let streamId = querystring.parse(parsedUrl.query).stream;
+        let channel = querystring.parse(parsedUrl.query).channel;
+        let sid = querystring.parse(parsedUrl.query).sid;
+        let tuner = querystring.parse(parsedUrl.query).tuner;
+        let video = querystring.parse(parsedUrl.query).video;
 
         if(!this.check(streamId)) { model.setOption({ streamId: Number(streamId) }); }
         if(!this.check(channel) && !this.check(sid) && !this.check(tuner) && !this.check(video)) {

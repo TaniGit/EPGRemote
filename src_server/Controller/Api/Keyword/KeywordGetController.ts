@@ -9,9 +9,10 @@ class KeywordGetController extends Controller {
     public execute(parsedUrl: url.Url, _request: http.ServerRequest, response: http.ServerResponse, _postData: string): void {
         this.log.access.info("controller 'KeywordGetController' was called.");
 
-        let page = parsedUrl.query.page;
-        let limit = parsedUrl.query.limit;
-        let keyword_id = parsedUrl.query.keyword_id;
+	var querystring = require('querystring');
+        let page = querystring.parse(parsedUrl.query).page;
+        let limit = querystring.parse(parsedUrl.query).limit;
+        let keyword_id = querystring.parse(parsedUrl.query).keyword_id;
 
         let model = this.modelFactory.get("KeywordModel");
         if(typeof keyword_id != "undefined") {

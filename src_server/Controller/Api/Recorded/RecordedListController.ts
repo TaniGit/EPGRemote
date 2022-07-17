@@ -9,12 +9,13 @@ class RecordedListController extends Controller {
     public execute(parsedUrl: url.Url, _request: http.ServerRequest, response: http.ServerResponse, _postData: string): void {
         this.log.access.info("controller 'RecordedListController' was called.");
 
-        let search = parsedUrl.query.search;
-        let autorec = parsedUrl.query.keyword_id;
-        let category_id = parsedUrl.query.category_id;
-        let channel_id = parsedUrl.query.channel_id;
-        let page = parsedUrl.query.page;
-        let limit = parsedUrl.query.limit;
+	var querystring = require('querystring');
+        let search = querystring.parse(parsedUrl.query).search;
+        let autorec = querystring.parse(parsedUrl.query).keyword_id;
+        let category_id = querystring.parse(parsedUrl.query).category_id;
+        let channel_id = querystring.parse(parsedUrl.query).channel_id;
+        let page = querystring.parse(parsedUrl.query).page;
+        let limit = querystring.parse(parsedUrl.query).limit;
 
         let model = this.modelFactory.get("RecordedListModel");
         model.setOption({

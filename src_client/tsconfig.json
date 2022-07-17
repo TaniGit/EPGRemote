@@ -1,5 +1,8 @@
 {
   "compilerOptions": {
+     "typeRoots": [
+      "node_modules/@types"
+    ],
     "module": "commonjs",
     "strictNullChecks": true,
     "noImplicitAny": true,
@@ -12,7 +15,7 @@
     "removeComments": true,
     "sourceMap": true,
     "target": "es5",
-     "lib": ["es6", "dom"]
+    "lib": ["es6", "dom"]
   },
   "exclude": [
     "node_modules"

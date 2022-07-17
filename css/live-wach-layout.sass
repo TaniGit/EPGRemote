@@ -2,39 +2,39 @@ $window-width: 800px
 
 /*1画面, 2画面共通*/
 .live-watch-parent-panel
-    width: 100%;
+    width: 100%
 
 /*1画面*/
 @media screen and (max-width: $window-width)
     .live-watch-parent-panel
-        overflow-y: auto;
-        height: auto;
+        overflow-y: auto
+        height: auto
 
     .live-watch-right-panel, .live-watch-left-panel
-        height: auto;
+        height: auto
 
 /*2画面*/
 @media screen and (min-width: $window-width)
     .live-watch-mdl-layout
-        display: block;
-        overflow: hidden;
+        display: block
+        overflow: hidden
 
     .live-watch-parent-panel
-        max-width: 1400px;
-        margin: 0 auto;
-        height: 100%;
+        max-width: 1400px
+        margin: 0 auto
+        height: 100%
 
     .live-watch-right-panel, .live-watch-left-panel
-        height: 100%;
-        float: left;
+        height: 100%
+        float: left
 
     .live-watch-left-panel
-        width: calc(75%);
+        width: calc(75%)
 
     .live-watch-right-panel
-        width: calc(25%);
+        width: calc(25%)
 
     #live-program-card-parent
-        overflow-y: auto;
-        height: 100%;
+        overflow-y: auto
+        height: 100%
 

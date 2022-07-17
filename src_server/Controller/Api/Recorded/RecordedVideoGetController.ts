@@ -9,10 +9,11 @@ class RecordedVideoGetController extends Controller {
     public execute(parsedUrl: url.Url, _request: http.ServerRequest, response: http.ServerResponse, _postData: string): void {
         this.log.access.info("controller 'RecordedVideoGetController' was called.");
 
-        let rec_id = parsedUrl.query.rec_id;
-        let ios = parsedUrl.query.ios;
-        let android = parsedUrl.query.android;
-        let windows = parsedUrl.query.windows;
+	var querystring = require('querystring');
+        let rec_id = querystring.parse(parsedUrl.query).rec_id;
+        let ios = querystring.parse(parsedUrl.query).ios;
+        let android = querystring.parse(parsedUrl.query).android;
+        let windows = querystring.parse(parsedUrl.query).windows;
 
         let model = this.modelFactory.get("RecordedVideoPathModel");
         model.setOption({

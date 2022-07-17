@@ -9,8 +9,9 @@ class ReservationGetController extends Controller {
     public execute(parsedUrl: url.Url, _request: http.ServerRequest, response: http.ServerResponse, _postData: string): void {
         this.log.access.info("controller 'ReservationGetController' was called.");
 
-        let page = parsedUrl.query.page;
-        let limit = parsedUrl.query.limit;
+	var querystring = require('querystring');
+        let page = querystring.parse(parsedUrl.query).page;
+        let limit = querystring.parse(parsedUrl.query).limit;
 
         let model = this.modelFactory.get("ReservationModel");
         model.setOption({ page: Number(page), limit: Number(limit) });

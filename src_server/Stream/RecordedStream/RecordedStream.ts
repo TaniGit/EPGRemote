@@ -12,6 +12,7 @@ class RecordedStream extends Stream {
     private type: string;
     private videoId: number;
     private recordedEncChild: child_process.ChildProcess;
+    //@ts-ignore TS6133: 'streamNumber' is declared but its value is never read.
     private streamNumber: number;
 
     private fileDeleter: StreamFileDeleter | null = null;

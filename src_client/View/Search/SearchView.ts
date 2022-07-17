@@ -16,6 +16,7 @@ import ProgramInfoDialogViewModel from '../../ViewModel/Program/ProgramInfoDialo
 * Search の View
 */
 class SearchView extends ParentPageView {
+    //@ts-ignore
     private viewModel: SearchViewModel;
     private searchOptionComponent = new SearchOptionComponent();
     private searchResultComponent = new SearchResultComponent();
