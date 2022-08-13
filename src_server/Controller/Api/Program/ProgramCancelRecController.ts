@@ -11,11 +11,12 @@ class ProgramCancelRecController extends Controller {
     public execute(parsedUrl: url.Url, _request: http.ServerRequest, response: http.ServerResponse, _postData: string): void {
         this.log.access.info("controller 'ProgramCancelRecController' was called.");
 
-	var querystring = require('querystring');
+        let querystring = require('querystring');
+        let q = (parsedUrl.search === null || parsedUrl.search === undefined) ? undefined :  parsedUrl.search.substring(1);
         let model = this.modelFactory.get("ProgramCancelRecModel");
         model.setOption({
-            program_id: Number(querystring.parse(parsedUrl.query).program_id),
-            autorec: Number(querystring.parse(parsedUrl.query).autorec)
+            program_id: Number(querystring.parse(q).program_id),
+            autorec: Number(querystring.parse(q).autorec)
         });
 
         let view = new NormalApiView(response, "ProgramCancelRecModel");

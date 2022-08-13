@@ -23,9 +23,10 @@ class Router extends Base {
         this.log.access.info("Access " + request.connection.remoteAddress + " : " + request.headers['user-agent']);
         this.log.access.info("About to route a request for " + parsedUrl.pathname);
 
-	let querystring = require('querystring');
+        let querystring = require('querystring');
         let pagePath = parsedUrl.pathname! + ":" + request.method!.toUpperCase();
-        if(this.checkQuery(querystring.parse(parsedUrl.query)) == false) {
+        let q = (parsedUrl.search === null || parsedUrl.search === undefined) ? undefined :  parsedUrl.search.substring(1);
+        if(this.checkQuery(querystring.parse(q)) == false) {
             this.handle["_bad_request"].execute(parsedUrl, request, response, postData);
         } else if ( FileTypeModule.hasType( path.extname(parsedUrl.pathname!) ) ) {
             this.handle["_spcified_file"].execute(parsedUrl, request, response, postData);

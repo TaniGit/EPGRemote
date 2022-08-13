@@ -9,9 +9,10 @@ class KodiRecordedController extends Controller {
     public execute(parsedUrl: url.Url, _request: http.ServerRequest, response: http.ServerResponse, _postData: string): void {
         this.log.access.info("controller 'KodiRecordedController' was called.");
 
-	var querystring = require('querystring');
-        let length = querystring.parse(parsedUrl.query).length;
-        let asc = querystring.parse(parsedUrl.query).asc;
+        let querystring = require('querystring');
+        let q = (parsedUrl.search === null || parsedUrl.search === undefined) ? undefined :  parsedUrl.search.substring(1);
+        let length = querystring.parse(q).length;
+        let asc = querystring.parse(q).asc;
 
         let model = this.modelFactory.get("KodiRecordedModel");
         model.setOption({

@@ -9,11 +9,12 @@ class LogController extends Controller {
     public execute(parsedUrl: url.Url, _request: http.ServerRequest, response: http.ServerResponse, _postData: string): void {
         this.log.access.info("controller 'LogController' was called.");
 
-	var querystring = require('querystring');
-        let info = querystring.parse(parsedUrl.query).info;
-        let warning = querystring.parse(parsedUrl.query).warning;
-        let error = querystring.parse(parsedUrl.query).error;
-        let debug = querystring.parse(parsedUrl.query).debug;
+        let querystring = require('querystring');
+        let q = (parsedUrl.search === null || parsedUrl.search === undefined) ? undefined :  parsedUrl.search.substring(1);
+        let info = querystring.parse(q).info;
+        let warning = querystring.parse(q).warning;
+        let error = querystring.parse(q).error;
+        let debug = querystring.parse(q).debug;
 
         let model = this.modelFactory.get("LogModel");
         model.setOption({

@@ -11,8 +11,9 @@ class KeywordDeleteController extends Controller {
     public execute(parsedUrl: url.Url, _request: http.ServerRequest, response: http.ServerResponse, _postData: string): void {
         this.log.access.info("controller 'KeywordDeleteController' was called.");
 
-	var querystring = require('querystring');
-        let keyword_id = querystring.parse(parsedUrl.query).keyword_id;
+        let querystring = require('querystring');
+        let q = (parsedUrl.search === null || parsedUrl.search === undefined) ? undefined :  parsedUrl.search.substring(1);
+        let keyword_id = querystring.parse(q).keyword_id;
 
         let model = this.modelFactory.get("KeywordDeleteModel");
         model.setOption({ keyword_id: Number(keyword_id) });

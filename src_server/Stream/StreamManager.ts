@@ -216,7 +216,7 @@ class StreamManager extends Base {
 
     //socketio ストリームの状態が変わった時の通知
     private notifyChangeStreamStatus(status: string, streamNumber: number): void {
-        this.log.stream.info("notifyChangeStreamStatus");
+        this.log.stream.info("notifyChangeStreamStatus:" + status);
         this.sockets.emit("refreshLiveStream", { status: status, streamNumber: streamNumber });
     }
 

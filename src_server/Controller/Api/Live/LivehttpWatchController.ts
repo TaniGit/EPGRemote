@@ -9,14 +9,15 @@ class LivehttpWatchController extends Controller {
     public execute(parsedUrl: url.Url, request: http.ServerRequest, response: http.ServerResponse, _postData: string): void {
         this.log.access.info("controller 'LivehttpWatchController' was called.");
 
-	var querystring = require('querystring');
+        let querystring = require('querystring');
+        let q = (parsedUrl.search === null || parsedUrl.search === undefined) ? undefined :  parsedUrl.search.substring(1);
         let model = this.modelFactory.get("LiveHttpWatchModel");
         model.setOption({
-            channel: querystring.parse(parsedUrl.query).channel,
-            sid: querystring.parse(parsedUrl.query).sid,
-            tunerId: Number(querystring.parse(parsedUrl.query).tuner),
-            videoId: Number(querystring.parse(parsedUrl.query).video),
-            pc: Number(querystring.parse(parsedUrl.query).pc)
+            channel: querystring.parse(q).channel,
+            sid: querystring.parse(q).sid,
+            tunerId: Number(querystring.parse(q).tuner),
+            videoId: Number(querystring.parse(q).video),
+            pc: Number(querystring.parse(q).pc)
         });
 
         let view = new LiveHttpWatchView(response, request);

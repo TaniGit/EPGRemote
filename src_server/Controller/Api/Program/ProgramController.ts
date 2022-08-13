@@ -9,12 +9,15 @@ class ProgramController extends Controller {
     public execute(parsedUrl: url.Url, _request: http.ServerRequest, response: http.ServerResponse, _postData: string): void {
         this.log.access.info("controller 'ProgramController' was called.");
 
-	var querystring = require('querystring');
-        let type = querystring.parse(parsedUrl.query).type;
-        let time = querystring.parse(parsedUrl.query).time;
-        let length = querystring.parse(parsedUrl.query)["length"];
-        let ch = querystring.parse(parsedUrl.query).ch;
+	let querystring = require('querystring');
+        let q = (parsedUrl.search === null || parsedUrl.search === undefined) ? undefined :  parsedUrl.search.substring(1);
+        let type = querystring.parse(q).type;
+        let time = querystring.parse(q).time;
+        let length = querystring.parse(q)["length"];
+        let ch = querystring.parse(q).ch;
 
+        this.log.access.info("type = " + type);
+        this.log.access.info("time = " + time);
         let model = this.modelFactory.get("ProgramModel");
         model.setOption({ type: type, time: time, length: Number(length), ch: ch });
 

@@ -9,7 +9,7 @@ class ReservationGetController extends Controller {
     public execute(parsedUrl: url.Url, _request: http.ServerRequest, response: http.ServerResponse, _postData: string): void {
         this.log.access.info("controller 'ReservationGetController' was called.");
 
-	var querystring = require('querystring');
+        let querystring = require('querystring');
         let page = querystring.parse(parsedUrl.query).page;
         let limit = querystring.parse(parsedUrl.query).limit;
 

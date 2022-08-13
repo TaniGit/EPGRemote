@@ -126,7 +126,7 @@ class ResponseSpecifiedFile extends View {
             });
 
             //接続切断時もファイルを開放する
-            this.request.on('close', () => {
+            this.response.on('close', () => {
                 readable.close();
             });
         }

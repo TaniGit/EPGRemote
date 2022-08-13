@@ -47,7 +47,7 @@
     "@types/chai": "4.0.0",
     "@types/chart.js": "2.9.4",
     "@types/log4js": "0.0.32",
-    "@types/material-design-lite": "1.1.14",
+    "@types/material-design-lite": "1.1.17",
     "@types/minimist": "1.2.0",
     "@types/mithril": "^1.1.x",
     "@types/mocha": "2.2.41",

@@ -9,11 +9,12 @@ class RecordedChannelListController extends Controller {
     public execute(parsedUrl: url.Url, _request: http.ServerRequest, response: http.ServerResponse, _postData: string): void {
         this.log.access.info("controller 'RecordedChannelListController' was called.");
 
-	var querystring = require('querystring');
-        let search = querystring.parse(parsedUrl.query).search;
-        let autorec = querystring.parse(parsedUrl.query).keyword_id;
-        let category_id = querystring.parse(parsedUrl.query).category_id;
-        let channel_id = querystring.parse(parsedUrl.query).channel_id;
+        let querystring = require('querystring');
+        let q = (parsedUrl.search === null || parsedUrl.search === undefined) ? undefined :  parsedUrl.search.substring(1);
+        let search = querystring.parse(q).search;
+        let autorec = querystring.parse(q).keyword_id;
+        let category_id = querystring.parse(q).category_id;
+        let channel_id = querystring.parse(q).channel_id;
 
         let model = this.modelFactory.get("RecordedChannelListModel");
         model.setOption({

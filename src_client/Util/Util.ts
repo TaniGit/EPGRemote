@@ -11,7 +11,7 @@ import { DialogModelInterface } from '../Model/Dialog/DialogModel';
 namespace Util {
     //Material Desgin Lite の DOM をアップグレードする処理
     export const upgradeMdl = (): void => {
-    	//@ts-ignore
+        //@ts-ignore
         componentHandler.upgradeDom();
         let el = document.getElementsByClassName( "mdl-layout__container" );
         for(let i = 0; i < el.length - 1; i++) { el[i].parentNode!.removeChild(el[i]); }

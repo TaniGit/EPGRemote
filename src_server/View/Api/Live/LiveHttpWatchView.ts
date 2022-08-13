@@ -7,6 +7,7 @@ import StreamManager from '../../../Stream/StreamManager';
 import Stream from '../../../Stream/Stream'
 
 class LiveHttpWatchView extends ApiView {
+    //@ts-ignore TS6133: 'request' is declared but its value is never read.
     private request: http.ServerRequest;
     private encChild: child_process.ChildProcess;
     private recChild: child_process.ChildProcess;
@@ -42,6 +43,7 @@ class LiveHttpWatchView extends ApiView {
         this.recChild = model.getResults()["recChild"];
         let contentType = model.getResults()["contentType"];
 
+        contentType = "video/mpeg";
         //child エラー処理
         this.setChildErrorProcessing(this.encChild);
         this.setChildErrorProcessing(this.recChild);
@@ -57,7 +59,7 @@ class LiveHttpWatchView extends ApiView {
         this.stream.countUp();
 
         //切断時
-        this.request.on('close', () => {
+        this.response.on('close', () => {
             this.stream.countDown();
             this.streamManager.stopStream(this.streamId); //配信停止
         });
